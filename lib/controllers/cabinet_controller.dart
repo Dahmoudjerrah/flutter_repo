@@ -8,7 +8,8 @@ import 'dart:math';
 import 'package:geolocator/geolocator.dart';
 
 class LocationController extends GetxController {
-  // Observable variables
+  RxBool showCabinetList = true.obs;
+  final showMap = false.obs;
   final RxString selectedWillaya = ''.obs;
   final RxString selectedMoughataa = ''.obs;
   final RxList<Cabinet> allCabinets = <Cabinet>[].obs;
@@ -18,12 +19,10 @@ class LocationController extends GetxController {
   final Rx<double?> userLat = Rx<double?>(null);
   final Rx<double?> userLng = Rx<double?>(null);
 
-  // Pagination variables
   final RxInt currentPage = 0.obs;
   final int cabinetsPerPage = 5;
   final RxInt totalPages = 0.obs;
 
-  // Liste des willayas
   final List<Location> willayas = [
     Location(name: "Hodh Chargui", value: "HODH_CHARGUI"),
     Location(name: "Hodh El Gharbi", value: "HODH_EL_GHARBI"),
@@ -42,7 +41,6 @@ class LocationController extends GetxController {
     Location(name: "Nouakchott Sud", value: "NOUAKCHOTT_SUD"),
   ];
 
-  // Mapping des moughataas par willaya
   final Map<String, List<Location>> moughataasByWillaya = {
     "HODH_CHARGUI": [
       Location(name: "Nema", value: "NEMA"),
@@ -133,7 +131,6 @@ class LocationController extends GetxController {
     getUserLocation();
   }
 
-  // Méthodes de pagination
   List<Cabinet> getPaginatedCabinets() {
     final startIndex = currentPage.value * cabinetsPerPage;
     final endIndex = startIndex + cabinetsPerPage;
@@ -150,6 +147,10 @@ class LocationController extends GetxController {
     }
   }
 
+  void toggleMapView() {
+    showMap.value = !showMap.value;
+  }
+
   void previousPage() {
     if (currentPage.value > 0) {
       currentPage.value--;
@@ -160,12 +161,11 @@ class LocationController extends GetxController {
     totalPages.value = (nearestCabinets.length / cabinetsPerPage).ceil();
   }
 
-  // Récupération des données des cabinets
   Future<void> fetchCabinets() async {
     try {
       isLoading(true);
       final response = await http
-          .get(Uri.parse('https://api.dedahi.com/location/api/cabinets'));
+          .get(Uri.parse('http://127.0.0.1:8947/api/cabinets'));
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
         allCabinets.value =
@@ -180,7 +180,6 @@ class LocationController extends GetxController {
     }
   }
 
-  // Géolocalisation de l'utilisateur
   Future<void> getUserLocation() async {
     try {
       final position = await Geolocator.getCurrentPosition();
@@ -247,7 +246,7 @@ class LocationController extends GetxController {
     return <DropdownMenuItem<String>>[
       const DropdownMenuItem<String>(
         value: "",
-        child: Text("Sélectionner une Willaya"),
+        child: Text(" Willaya"),
       ),
       ...willayas.map((Location location) {
         return DropdownMenuItem<String>(
@@ -264,7 +263,7 @@ class LocationController extends GetxController {
       return <DropdownMenuItem<String>>[
         const DropdownMenuItem<String>(
           value: "",
-          child: Text("Sélectionner une Moughataa"),
+          child: Text(" Moughataa"),
         ),
       ];
     }
@@ -273,7 +272,7 @@ class LocationController extends GetxController {
     return <DropdownMenuItem<String>>[
       const DropdownMenuItem<String>(
         value: "",
-        child: Text("Sélectionner une Moughataa"),
+        child: Text(" Moughataa"),
       ),
       ...moughataaList.map((Location location) {
         return DropdownMenuItem<String>(

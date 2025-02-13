@@ -9,7 +9,7 @@ class AppRoutes {
     // ),
     GetPage(
       name: '/cabinet',
-      page: () => const LocationView(),
+      page: () => LocationView(),
     ),
     // GetPage(
     //   name: '/docteur',

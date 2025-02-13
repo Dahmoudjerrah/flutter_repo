@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxapp/bindings/location_binding.dart';
-import 'package:getxapp/routes/app_routes.dart';
 import 'package:getxapp/views/cabinet_view.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+
+import 'package:getxapp/views/doctours_view.dart';
+import 'package:getxapp/views/pharacie_view.dart';
+import 'mobile_url_strategy.dart'
+    if (dart.library.html) 'web_url_strategy.dart';
 
 void main() {
-  setUrlStrategy(PathUrlStrategy());
+  configureApp();
   runApp(const MyApp());
 }
 
@@ -24,10 +27,10 @@ class MyApp extends StatelessWidget {
       //home: const LocationView(),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const LocationView()),
-        //GetPage(name: '/pharmacie', page: () => const PharmacieView()),
-        GetPage(name: '/cabinet', page: () => const LocationView()),
-        // GetPage(name: '/docteur', page: () => const DocteurView()),
+        GetPage(name: '/', page: () => LocationView()),
+        GetPage(name: '/pharmacie', page: () => const PharmacyView()),
+        GetPage(name: '/cabinet', page: () => LocationView()),
+        GetPage(name: '/docteur', page: () => DoctorListView()),
       ],
       initialBinding: LocationBinding(),
     );
