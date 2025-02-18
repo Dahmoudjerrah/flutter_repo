@@ -42,7 +42,7 @@ class LocationView extends GetView<LocationController> {
                   ),
                   ListTile(
                     title: const Text("Home"),
-                    onTap: () => Get.toNamed('//home'),
+                    onTap: () => Get.toNamed('/home'),
                   ),
                 ],
               ),

@@ -42,7 +42,7 @@ class PharmacyView extends GetView<PharmacyController> {
                   ),
                   ListTile(
                     title: const Text("Home"),
-                    onTap: () => Get.toNamed('//home'),
+                    onTap: () => Get.toNamed('/home'),
                   ),
                 ],
               ),
