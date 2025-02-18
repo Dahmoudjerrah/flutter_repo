@@ -41,7 +41,13 @@ dependencies:
   geolocator: ^10.0.0
   http: ^0.13.0
   url_launcher: ^6.1.10
-
+  flutter_launcher_icons: ^0.14.3
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png" # Remplace par le chemin de ton logo
+  adaptive_icon_background: "#ffffff" # Optionnel (Android)
+  adaptive_icon_foreground: "assets/images/logo.png"
 
 dev_dependencies:
   flutter_test:
