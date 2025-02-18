@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxapp/bindings/location_binding.dart';
+import 'package:getxapp/home.dart';
 import 'package:getxapp/views/cabinet_view.dart';
 
 import 'package:getxapp/views/doctours_view.dart';
@@ -27,10 +28,11 @@ class MyApp extends StatelessWidget {
       //home: const LocationView(),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => LocationView()),
+        GetPage(name: '/', page: () => HomePage()),
         GetPage(name: '/pharmacie', page: () => const PharmacyView()),
         GetPage(name: '/cabinet', page: () => LocationView()),
         GetPage(name: '/docteur', page: () => DoctorListView()),
+        GetPage(name: '/home', page: () => HomePage()),
       ],
       initialBinding: LocationBinding(),
     );
