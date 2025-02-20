@@ -221,7 +221,7 @@ class DoctorController extends GetxController {
   Future<void> fetchDoctors() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.100.62:8947/api/doctors'),
+        Uri.parse('http://127.0.0.1:8947/api/doctors'),
       );
 
       if (response.statusCode == 200) {
@@ -249,7 +249,7 @@ class DoctorController extends GetxController {
     for (var id in cabinetIds) {
       try {
         final response = await http.get(
-          Uri.parse('http://192.168.100.62:8947/api/cabinets/$id'),
+          Uri.parse('http://127.0.0.1:8947/api/cabinets/$id'),
         );
 
         if (response.statusCode == 200) {

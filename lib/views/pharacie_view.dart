@@ -15,8 +15,16 @@ class PharmacyView extends GetView<PharmacyController> {
     return Scaffold(
       appBar: isMobile
           ? AppBar(
-              title: const Text("Pharmacies"),
-              backgroundColor: const Color(0xFF47C3A4),
+              title: const Text(
+                "Pharmacies",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              //backgroundColor: const Color(0xFF47C3A4),
+              backgroundColor: Colors.blue,
+              centerTitle: true,
             )
           : null,
       drawer: isMobile
@@ -25,22 +33,40 @@ class PharmacyView extends GetView<PharmacyController> {
                 children: [
                   const DrawerHeader(
                     decoration: BoxDecoration(
-                      color: Color(0xFF47C3A4),
+                      color: Colors.blue,
                     ),
-                    child: Text(
-                      "pharmacies",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.local_hospital,
+                              size: 40, color: Colors.blue),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Pharmacies ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   ListTile(
+                    leading: const Icon(Icons.medical_services),
                     title: const Text("doctors"),
                     onTap: () => Get.toNamed('/docteur'),
                   ),
                   ListTile(
+                    leading: const Icon(Icons.local_hospital),
                     title: const Text("cabinets"),
                     onTap: () => Get.toNamed('/cabinet'),
                   ),
                   ListTile(
+                    leading: const Icon(Icons.home),
                     title: const Text("Home"),
                     onTap: () => Get.toNamed('/home'),
                   ),

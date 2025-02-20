@@ -165,7 +165,7 @@ class LocationController extends GetxController {
     try {
       isLoading(true);
       final response =
-          await http.get(Uri.parse('http://192.168.100.62:8947/api/cabinets'));
+          await http.get(Uri.parse('http://127.0.0.1:8947/api/cabinets'));
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
         allCabinets.value =

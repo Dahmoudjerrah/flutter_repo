@@ -160,8 +160,8 @@ class PharmacyController extends GetxController {
   Future<void> fetchPharmacies() async {
     try {
       isLoading(true);
-      final response = await http.get(
-          Uri.parse('http://192.168.100.62:8947/api/pharmacies/available'));
+      final response = await http
+          .get(Uri.parse('http://127.0.0.1:8947/api/pharmacies/available'));
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
         allPharmacies.value =
